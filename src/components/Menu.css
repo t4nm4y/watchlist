@@ -1,0 +1,86 @@
+.MenuWrap{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(38, 2, 59);
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 12;
+}
+.Menu{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.menuBtn{
+    scale: 1.5;
+    margin: 2em;
+    font-size: large;
+    border: #ff3690 0.08em solid;
+    background: none;
+    color: rgb(255, 255, 255);
+    width: fit-content;
+    height: 2em;
+    padding: 0 1em 0 1em;
+    border-radius: 16px;
+  }
+
+  /* toogle button */
+  /* #checkbox {
+    display: none;
+  }
+  
+  .toggle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    transition-duration: .5s;
+  }
+  
+  .bars {
+    width: 100%;
+    height: 4px;
+    background-color: rgb(92, 130, 255);
+    border-radius: 4px;
+  }
+  
+  #bar2 {
+    transition-duration: .8s;
+  }
+  
+  
+  #checkbox:checked + .toggle .bars {
+    position: absolute;
+    transition-duration: .5s;
+  }
+  
+  #checkbox:checked + .toggle #bar2 {
+    transform: scaleX(0);
+    transition-duration: .1s;
+  }
+  
+  #checkbox:checked + .toggle #bar1 {
+    width: 100%;
+    transform: rotate(45deg);
+    transition-duration: .5s;
+  }
+  
+  #checkbox:checked + .toggle #bar3 {
+    width: 100%;
+    transform: rotate(-45deg);
+    transition-duration: .5s;
+  }
+  
+  #checkbox:checked + .toggle {
+    transition-duration: .5s;
+    transform: rotate(180deg);
+  } */

@@ -9,12 +9,14 @@ function App() {
   const toogleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
   }
-
+  
   return (
     <div className="App" id={theme}>
       <div className='mainWrap'>
         <Navbar toogleTheme={toogleTheme} />
+        <div className="hide-on-mobile">
           <Blob/>
+        </div>
         <div className='cardWrap'>
           <Card title="1. aot" />
           <Card title="2. aot" />
