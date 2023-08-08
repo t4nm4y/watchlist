@@ -1,5 +1,5 @@
 .navbar{
-    color: #c8c8c8;
+    color: var(--text-color);
     font-weight: bolder;
     font-size: 1em;
     position: sticky;
@@ -10,9 +10,9 @@
     z-index: 9;
     backdrop-filter: blur( 8px );
     -webkit-backdrop-filter: blur( 8px );
-  
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 500ms;
+    background-color: rgba(124, 124, 124, 0.16);
   }
   .navInnerWrap{
     margin: 0 1em 0 1em;
@@ -42,7 +42,7 @@
   
   .slider {
     --light:  #FFFBFB;
-    --dark: #D07974;
+    --dark: #ff6c9d;
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -82,7 +82,7 @@ button{
   font-size: large;
   border: #ff3690 0.08em solid;
   background: none;
-  color: rgb(255, 255, 255);
+  color: var(--text-color);
   width: fit-content;
   height: 2em;
   padding: 0 1em 0 1em;

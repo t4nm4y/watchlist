@@ -4,10 +4,10 @@ const Menu = () => {
   return (
     <div className='MenuWrap'>
         <div className='Menu'>
-            <button className='menuBtn'>all</button>
+            <button className='menuBtn'>All</button>
             <button className='menuBtn'>Movies</button>
             <button className='menuBtn'>Webseries</button>
-            <button className='menuBtn'>anime</button>
+            <button className='menuBtn'>Anime</button>
         </div>
     </div>
   )

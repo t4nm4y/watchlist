@@ -1,13 +1,15 @@
+
 #light{
-  --bg-color:#FAFAFA;
-  --card-color: #8a4189b8;
-  --text-color:#2D1717;
+  --bg-color:#f9e8d9;
+  --card-color: #fcae617b;
+  --text-color:#56025e;
 }
 #dark{
   --bg-color:#1a1a1a;
-  --card-color: #656565da;
+  --card-color: #86858529;
   --text-color:#FFFBFB;
 }
+
 
 .mainWrap{
   display: flex;
