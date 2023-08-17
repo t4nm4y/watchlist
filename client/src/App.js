@@ -18,7 +18,7 @@ function App() {
           <Blob/>
         </div>
         <div className='cardWrap'>
-          <Card title="1. aot" />
+          <Card title="1. aot lorem ipsumsldkjflskdjfl sdjflskdjflk sjdlfk j fl" />
           <Card title="2. aot" />
           <Card title="1. aot" />
           <Card title="2. aot" />

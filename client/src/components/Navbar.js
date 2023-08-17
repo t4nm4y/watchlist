@@ -40,10 +40,10 @@ const Navbar = ({ toogleTheme }) => {
       <div className='navInnerWrap'>
         <h2> My Watchlist</h2>
         <div className='hide_on_smallScreen ButtonsWrap'>
-            <button>All</button>
-            <button>Movies</button>
-            <button>Webseries</button>
-            <button>Anime</button>
+            <button className='nav_btn'>All</button>
+            <button className='nav_btn'>Movies</button>
+            <button className='nav_btn'>Webseries</button>
+            <button className='nav_btn'>Anime</button>
         </div>
 
         <div className='rightBtn'>

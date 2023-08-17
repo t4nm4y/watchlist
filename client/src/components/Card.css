@@ -1,0 +1,23 @@
+.card{
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+    padding: 0.5em;
+}
+.card_btn{
+    color: var(--btn-color);
+    font-Size: 1.6em;
+}
+.card_btn:hover{
+    cursor: pointer;
+    scale: 1.2;
+    transition: 200ms;
+}
+.card_btn_wrap{
+    display: flex;
+    min-width: 3.6em;
+    width: 3.6em;
+    justify-content: space-between;
+    margin-left: 0.5em;
+    /* background-color: rgba(245, 245, 220, 0.168); */
+}

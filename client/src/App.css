@@ -3,11 +3,14 @@
   --bg-color:#f9e8d9;
   --card-color: #fcae617b;
   --text-color:#56025e;
+  --btn-color: #790384c6;
 }
 #dark{
   --bg-color:#1a1a1a;
   --card-color: #86858529;
   --text-color:#FFFBFB;
+  --btn-color: #ff82bef8;
+
 }
 
 
@@ -15,6 +18,7 @@
   display: flex;
   flex-direction: column;
   background-color: var(--bg-color);
+  transition-duration: 500ms;
 }
 .cardWrap{
   display: flex;
@@ -24,6 +28,12 @@
   align-items: center;
   padding: 1em 0 1em 0;
   z-index: 2;
+}
+button{
+  cursor: pointer;
+  background: none;
+  outline: none;
+  border: none;
 }
 .card{
   display: flex;
@@ -37,6 +47,7 @@
   color: var(--text-color);
   border-radius: 8px;
   margin-top: 0.5em;
+  transition-duration: 500ms;
 }
 .menu-open{
   overflow: hidden;
