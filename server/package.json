@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "server:dev": "nodemon server.js",
+    "dev": "nodemon server.js",
     "server": "node server.js"
   },
   "dependencies": {

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv'); // to read form .env file
-// const movieRoutes = require('./routes/movies');
+const router = require('./router/routes.js');
 
 const app = express();
 
@@ -11,24 +11,6 @@ dotenv.config(); //to load the variables from .env file
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-
-
-//Scheme
-const movieSchema = new mongoose.Schema({
-    title: {
-        type:String,
-        required: true,
-        unique: true,
-    },
-    category: {
-        type:String,
-        required: true,
-    },
-    watchedDate: Date,
-  });
-
-// Model
-const Movie = mongoose.model('Movie', movieSchema);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -42,7 +24,7 @@ db.once('open', () => {
 });
 
 // Routes
-// app.use('/movies', movieRoutes);
+app.use(router);
 
 // Start the server
 const PORT = process.env.PORT || 5000;
