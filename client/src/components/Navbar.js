@@ -26,7 +26,7 @@ function useScrollDirection() {
   return scrollDirection;
 };
 
-const Navbar = ({ toogleTheme }) => {
+const Navbar = ({ toogleTheme, setPage }) => {
 
   const [showMenu, setMenu] = useState(false);
   const toggleMenu = () => {
@@ -38,12 +38,12 @@ const Navbar = ({ toogleTheme }) => {
   return (
     <div className={`navbar ${scrollDirection === "down" ? "hide" : ""}`}>
       <div className='navInnerWrap'>
-        <h2> My Watchlist</h2>
+        <h1> My Watchlist</h1>
         <div className='hide_on_smallScreen ButtonsWrap'>
-            <button className='nav_btn'>All</button>
-            <button className='nav_btn'>Movies</button>
-            <button className='nav_btn'>Webseries</button>
-            <button className='nav_btn'>Anime</button>
+            <button className='nav_btn' onClick={()=>setPage("All")}>All</button>
+            <button className='nav_btn' onClick={()=>setPage("Movies")}>Movies</button>
+            <button className='nav_btn' onClick={()=>setPage("Webseries")}>Webseries</button>
+            <button className='nav_btn' onClick={()=>setPage("Anime")}>Anime</button>
         </div>
 
         <div className='rightBtn'>
@@ -54,7 +54,7 @@ const Navbar = ({ toogleTheme }) => {
         </label>
         {/* menu toggle */}
         <input id="checkbox" type="checkbox" onChange={toggleMenu}/>
-            {showMenu && <Menu/>}
+            {showMenu && <Menu setPage={setPage} setMenu={setMenu}/>}
         <label className={`hide_on_bigScreen toggle ${showMenu? "checked" : ""}`} for="checkbox">
               <div id="bar1" className="bars"></div>
               <div id="bar2" className="bars"></div>

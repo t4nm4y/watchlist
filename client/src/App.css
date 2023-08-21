@@ -19,14 +19,15 @@
   background-color: var(--bg-color);
   transition-duration: 500ms;
 }
-.cardWrap{
+.headingWrap{
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
   align-items: center;
-  padding: 1em 0 1em 0;
-  z-index: 2;
+  height: 3.5em;
+}
+.heading{
+  color:var(--text-color);
+  margin-right: 0.5em;
+  font-size: 1.7em;
 }
 button{
   cursor: pointer;
@@ -34,20 +35,7 @@ button{
   outline: none;
   border: none;
 }
-.card{
-  display: flex;
-  padding-left: 1em;
-  justify-content: flex-start;
-  align-items: center;
-  width: 90%;
-  max-width: 20em;
-  height: 2.5em;
-  background-color: var(--card-color);
-  color: var(--text-color);
-  border-radius: 8px;
-  margin-top: 0.5em;
-  transition-duration: 500ms;
-}
+
 .menu-open{
   overflow: hidden;
 }
