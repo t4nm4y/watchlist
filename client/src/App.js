@@ -45,6 +45,7 @@ function App() {
   return (
     <div className="App" id={theme}>
       <div className='mainWrap'>
+        {editable ? <AddCard fetchList={fetchList} setEditable={setEditable} currPage={currPage}/> : null}
         <Navbar toogleTheme={toogleTheme} setPage={setPage}/>
         <div className="hide-on-mobile">
           <Blob/>
@@ -56,12 +57,13 @@ function App() {
               <MdAddCircle className="card_btn" />
             </button>
           </div>
-          {editable ? <AddCard fetchList={fetchList} setEditable={setEditable}/> : null}
-          {movieList.map((movie) => (
-            <Card key={movie._id} currPage={currPage} _id={movie._id} title={movie.title} watchedDate={movie.watchedDate} category={movie.category} fetchList={fetchList}/>
+          {movieList.map((movie, index) => (
+            <Card index={index + 1} key={movie._id} currPage={currPage} _id={movie._id} title={movie.title} watchedDate={movie.watchedDate} category={movie.category} fetchList={fetchList}/>
           ))}
-          <Card title="1. aot" category="M"/>
-          <Card title="aot" category="AM"/>
+
+          {/* dummy data */}
+          {/* <Card title="1. aot" category="M"/>
+          <Card title="2. batman dark knight rises batman" category="AM"/>
           <Card title="aot" category="M"/>
           <Card title="1. batman"/>
           <Card title="1. aot"/>
@@ -71,7 +73,10 @@ function App() {
           <Card title="1. aot"/>
           <Card title="aot"/>
           <Card title="aot"/>
-          <Card title="aot"/>
+          <Card title="aot"/> */}
+
+          <br />
+          <br />
         </div>
       </div>
     </div>

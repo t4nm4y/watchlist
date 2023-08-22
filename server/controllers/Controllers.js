@@ -1,10 +1,70 @@
 const Watchlist = require('../model/Model');
 
-//getList, addMovie, updateMovie, deleteMovie
-module.exports.getList = async(req,res)=> { 
+//getAll, getMovies, getWebseries, getAnime, getAnimeMovie, getAnimeSeries
+module.exports.getAll = async(req,res)=> { 
     try{
         // to find all the docs in a collection
-        const list=await Watchlist.find({});
+        const list=await Watchlist.find({}).sort({ title: 1 });
+        res.send(list);
+    }
+    catch(err){
+        console.error('Error fetching the list:', err);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
+module.exports.getMovies = async(req,res)=> { 
+    try{
+        // to find all the docs in a collection
+        const list=await Watchlist.find({ category: 'M' }).sort({ title: 1 });
+        res.send(list);
+    }
+    catch(err){
+        console.error('Error fetching the list:', err);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
+module.exports.getWebseries = async(req,res)=> { 
+    try{
+        // to find all the docs in a collection
+        const list=await Watchlist.find({ category: 'S' }).sort({ title: 1 });
+        res.send(list);
+    }
+    catch(err){
+        console.error('Error fetching the list:', err);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
+module.exports.getAnime = async(req,res)=> { 
+    try{
+        // to find all the docs in a collection
+        const list=await Watchlist.find({ category: 'A' }).sort({ title: 1 });
+        res.send(list);
+    }
+    catch(err){
+        console.error('Error fetching the list:', err);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
+module.exports.getAnimeMovie = async(req,res)=> { 
+    try{
+        // to find all the docs in a collection
+        const list=await Watchlist.find({ category: 'AM' }).sort({ title: 1 });
+        res.send(list);
+    }
+    catch(err){
+        console.error('Error fetching the list:', err);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
+module.exports.getAnimeSeries = async(req,res)=> { 
+    try{
+        // to find all the docs in a collection
+        const list=await Watchlist.find({ category: 'AS' }).sort({ title: 1 });
         res.send(list);
     }
     catch(err){

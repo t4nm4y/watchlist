@@ -29,9 +29,9 @@ const Card = (props) => {
   return (
     <div className='card'>
       {editable ? <AddCard _id={props._id} fetchList={props.fetchList} title={props.title} setEditable={setEditable} category={props.category}/> : null}
-      <div className='Title'>{props.title}</div>
+      <div className='Title'>{props.index}.&nbsp;{props.title}</div>
       <div className='card_btn_wrap'>
-      <span>[{props.category}]</span>
+      <span style={{fontWeight:'600', fontSize:'1.2em'}}>[{props.category}]</span>
         <button onClick={()=>setEditable(true)}>
           <RiEdit2Fill className="card_btn" />
         </button>

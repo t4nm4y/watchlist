@@ -9,6 +9,8 @@ const movieSchema = new mongoose.Schema({
     },
     category: {
         type:String,
+            //movies, webseries, anime, animeMovie, animeSeries
+        enum: ['M', 'S', 'A', 'AM', 'AS'], // Only these values are allowed
         required: true,
     },
     watchedDate: Date,

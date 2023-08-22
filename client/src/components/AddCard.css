@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     z-index: 99;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur( 7.5px );
     -webkit-backdrop-filter: blur( 7.5px );
 }
@@ -16,7 +16,8 @@
     height: 3em;
     box-shadow: 0px 0px 23px 0px var(--btn-color);
     max-width: 80%;
-    width: 20em;
+    width: 25em;
+    margin-bottom: 4em;
 }
 .inputWrap{
     width: 100%;
@@ -29,4 +30,40 @@
     background: none;
     color: var(--text-color);
     font-size: 1.4em;
+}
+
+.dropdown-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: var(--text-color);
+    height: 3em;
+    min-width: 6.5em;
+    width: fit-content;
+    /* background-color: rgba(250, 235, 215, 0.289); */
+}
+
+.radio-container {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -1.5em;
+    width: 10.5em;
+    /* border-radius: 0 0 10px 10px; */
+    border-radius: 10px;
+    /* box-shadow: 0px 0px 23px 0px #0e0e0e1b; */
+    background: var(--bg-color);
+}
+
+.radio-option {
+    margin: 0.8em 0 0.8em 0.2em;
+}
+
+/* Show the radio container when hovering over the button */
+.dropdown-container:hover .radio-container {
+    display: block;  /* to set the default value */
+}
+label{
+    font-weight: 500;
 }

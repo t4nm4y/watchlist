@@ -34,12 +34,13 @@
     transition: 200ms;
 }
 .card_btn_wrap{
+    padding-left: 0.5em;
     display: flex;
-    min-width: 7.5em;
+    /* min-width: 3em; */
     justify-content: space-between;
     align-items: center;
     /* background-color: rgba(245, 245, 220, 0.168); */
 }
 .Title{
-    font-size: 1.4em;
+    font-size: 1.3em;
 }
