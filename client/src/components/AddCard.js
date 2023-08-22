@@ -4,8 +4,9 @@ import { MdCheckCircle } from 'react-icons/md';
 
 
 const AddCard = (props) => {
+    console.log("category recieved", props.category);
     const [title, setTitle] = useState(props.title);
-    const [category, setCategory] = useState(props.category || props.currPage==="Movies" ? "M" : props.currPage==="Webseries" ? "S" : props.currPage==="Anime" ? "A" : "Category");
+    const [category, setCategory] = useState(props.category || (props.currPage==="Movies" ? "M" : props.currPage==="Webseries" ? "S" : props.currPage==="Anime" ? "A" : "Category"));
     const originalTitle = props.title;
     const cardRef = useRef(null);
     const handleEdit = async () => {

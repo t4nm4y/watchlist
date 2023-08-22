@@ -28,7 +28,7 @@ const Card = (props) => {
 
   return (
     <div className='card'>
-      {editable ? <AddCard _id={props._id} fetchList={props.fetchList} title={props.title} setEditable={setEditable} category={props.category}/> : null}
+      {editable ? <AddCard _id={props._id} title={props.title} category={props.category} setEditable={setEditable} fetchList={props.fetchList} /> : null}
       <div className='Title'>{props.index}.&nbsp;{props.title}</div>
       <div className='card_btn_wrap'>
       <span style={{fontWeight:'600', fontSize:'1.2em'}}>[{props.category}]</span>

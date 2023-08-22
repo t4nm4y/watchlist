@@ -40,7 +40,7 @@ module.exports.getWebseries = async(req,res)=> {
 module.exports.getAnime = async(req,res)=> { 
     try{
         // to find all the docs in a collection
-        const list=await Watchlist.find({ category: 'A' }).sort({ title: 1 });
+        const list=await Watchlist.find({ category: { $in: ['A', 'AM'] }}).sort({ title: 1 });
         res.send(list);
     }
     catch(err){
@@ -118,3 +118,23 @@ module.exports.deleteMovie = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+module.exports.searchByTitle = async (req, res) => {
+    try {
+      const { searchTerm} = req.body;
+  
+      // Use Mongoose's find method with a regular expression to search for movies by title
+      const list = await Watchlist.find({
+        title: { $regex: new RegExp(searchTerm, 'i') }, // 'i' for case-insensitive search
+      });
+  
+      if (!list || list.length === 0) {
+        return res.status(404).json({ error: 'No list found with this title' });
+      }
+  
+      res.send(list);
+    } catch (error) {
+      console.error('Error searching by title:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+  

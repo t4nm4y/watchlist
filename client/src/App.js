@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import Card from './components/Card';
 import Blob from './components/Blob';
 import Navbar from './components/Navbar';
-import { MdAddCircle } from 'react-icons/md';
+import { MdAddCircle, MdSearch, MdClose } from 'react-icons/md';
 import AddCard from './components/AddCard';
 function App() {
-  const[editable, setEditable] = useState(false);
+  const [editable, setEditable] = useState(false);
+  const [searching, setSearching] = useState(false);
   const [theme, setTheme] = useState("dark");
   const toogleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
@@ -14,51 +15,95 @@ function App() {
   const [movieList, setList] = useState([]);
   const [currPage, setPage] = useState("All");
 
-  const fetchList = async function () {
-    try{
-      console.log("currPage", currPage);
-      if(currPage==="All"){
-        const response= await fetch('/all');
+  const searchList = async function (searchTerm) {
+    try {
+      const response = await fetch('/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          searchTerm: searchTerm,
+        }),
+      });
+      // console.log("the resp of search",response);
+      if(response.ok) {
         setList(await response.json());
       }
-      else if(currPage==="Movies"){
-        const response= await fetch('/movies');
-        setList(await response.json());
-      }
-      else if(currPage==="Webseries"){
-        const response= await fetch('/webseries');
-        setList(await response.json());
-      }
-      else if(currPage==="Anime"){
-        const response= await fetch('/anime');
-        setList(await response.json());
+      if(response.status===404) {
+        setList([]);
+        // alert("No results found");
       }
     }
-    catch(err){
+    catch (err) {
       console.log(err);
     }
   }
-  useEffect(()=> {
+  const fetchList = async function () {
+    try {
+      if (currPage === "All") {
+        const response = await fetch('/all');
+        setList(await response.json());
+      }
+      else if (currPage === "Movies") {
+        const response = await fetch('/movies');
+        setList(await response.json());
+      }
+      else if (currPage === "Webseries") {
+        const response = await fetch('/webseries');
+        setList(await response.json());
+      }
+      else if (currPage === "Anime") {
+        const response = await fetch('/anime');
+        setList(await response.json());
+      }
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+  useEffect(() => {
     fetchList();
   }, [currPage]);
-  
+
   return (
     <div className="App" id={theme}>
       <div className='mainWrap'>
-        {editable ? <AddCard fetchList={fetchList} setEditable={setEditable} currPage={currPage}/> : null}
-        <Navbar toogleTheme={toogleTheme} setPage={setPage}/>
+        {editable ? <AddCard fetchList={fetchList} setEditable={setEditable} currPage={currPage} /> : null}
+        <Navbar toogleTheme={toogleTheme} setPage={setPage} />
         <div className="hide-on-mobile">
-          <Blob/>
+          <Blob />
         </div>
         <div className='cardWrap'>
           <div className='headingWrap'>
-            <h2 className='heading'>{currPage}</h2>
-            <button onClick={()=>setEditable(true)}>
+              {searching ? (
+                <div className='SearchWrap'>
+                  <input className='search_input' type="text" placeholder='SEARCH'
+                    onInput={(e) => searchList(e.target.value)}
+                    // onKeyUp={(e) => searchList(e.target.value)}
+                    required autoFocus />
+                  <button onClick={() => {
+                    setSearching(false);
+                    fetchList();
+                  }}>
+                    <MdClose className="card_btn" />
+                  </button>
+                </div>
+              ) :<>
+              <h2 className='heading'>{currPage}</h2>
+                <button onClick={() => setSearching(true)}>
+                  <MdSearch className="card_btn" />
+                </button>
+              </>
+                }
+
+            {/* </div> */}
+            <button onClick={() => setEditable(true)}>
               <MdAddCircle className="card_btn" />
             </button>
           </div>
           {movieList.map((movie, index) => (
-            <Card index={index + 1} key={movie._id} currPage={currPage} _id={movie._id} title={movie.title} watchedDate={movie.watchedDate} category={movie.category} fetchList={fetchList}/>
+            <Card index={index + 1} key={movie._id} currPage={currPage} _id={movie._id} title={movie.title} watchedDate={movie.watchedDate} category={movie.category} fetchList={fetchList} />
           ))}
 
           {/* dummy data */}

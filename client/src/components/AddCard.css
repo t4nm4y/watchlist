@@ -21,14 +21,12 @@
 }
 .inputWrap{
     width: 100%;
+    display: flex;
+    align-items: center;
     /* background-color: rgba(0, 255, 255, 0.349); */
 }
 .input{
     width: 98%;
-    border: none;
-    outline: none;
-    background: none;
-    color: var(--text-color);
     font-size: 1.4em;
 }
 
