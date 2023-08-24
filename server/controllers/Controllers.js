@@ -1,6 +1,13 @@
 const Watchlist = require('../model/Model');
+const jwt = require('jsonwebtoken');
 
-//getAll, getMovies, getWebseries, getAnime, getAnimeMovie, getAnimeSeries
+//login, getAll, getMovies, getWebseries, getAnime, getAnimeMovie, getAnimeSeries
+module.exports.login = async(req,res)=> {
+    const user = { username: 'T4nm4y' };
+    const token = jwt.sign(user, process.env.JWT_KEY);
+    // Send the token back to the client
+    res.json({ token });
+}
 module.exports.getAll = async(req,res)=> { 
     try{
         // to find all the docs in a collection

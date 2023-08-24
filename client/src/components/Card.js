@@ -3,18 +3,29 @@ import { RiEdit2Fill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import AddCard from './AddCard';
 import './Card.css';
+import { useNavigate } from 'react-router-dom';
 
 const Card = (props) => {
-
   const[editable, setEditable] = useState(false);
-
+  
+  const Navigate=useNavigate();
+  function isAuthenticated() {
+    const token = localStorage.getItem('token');
+    return !!token; // Returns true if a token is present
+  }
+  const token = localStorage.getItem('token');
   const handleDelete = async () => {
-    console.log("delete");
+    console.log("deleting");
     try {
+      if(!isAuthenticated()) {
+        Navigate('/login');
+        return;
+      }
       await fetch('/delete', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': token,
         },
         body: JSON.stringify({
           _id: props._id,

@@ -1,16 +1,25 @@
 import { React, useState, useRef } from 'react'
 import './AddCard.css'
 import { MdCheckCircle } from 'react-icons/md';
-
+import { useNavigate } from 'react-router-dom';
 
 const AddCard = (props) => {
-    console.log("category recieved", props.category);
+    const Navigate=useNavigate();
+  function isAuthenticated() {
+    const token = localStorage.getItem('token');
+    return !!token; // Returns true if a token is present
+  }
+    const token = localStorage.getItem('token');
     const [title, setTitle] = useState(props.title);
     const [category, setCategory] = useState(props.category || (props.currPage==="Movies" ? "M" : props.currPage==="Webseries" ? "S" : props.currPage==="Anime" ? "A" : "Category"));
     const originalTitle = props.title;
     const cardRef = useRef(null);
     const handleEdit = async () => {
         if (!title) return;
+        if(!isAuthenticated()) {
+            Navigate('/login');
+            return;
+          }
         if (title === originalTitle && category === props.category) {
             props.setEditable(false);
             return;
@@ -23,13 +32,13 @@ const AddCard = (props) => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        Authorization: token,
                     },
                     body: JSON.stringify({
                         title: title,
                         category: category,
                     }),
                 });
-                console.log(response);
                 if (response.ok) {
                     console.log("added");
                     await props.fetchList();
@@ -41,6 +50,7 @@ const AddCard = (props) => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        Authorization: token,
                     },
                     body: JSON.stringify({
                         _id: props._id,
@@ -65,7 +75,6 @@ const AddCard = (props) => {
     };
     const handleClickOutside = (event) => {
         if (cardRef.current && !cardRef.current.contains(event.target)) {
-            console.log('Hello');
             props.setEditable(false);
         }
     };

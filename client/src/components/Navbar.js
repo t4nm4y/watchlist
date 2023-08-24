@@ -2,13 +2,13 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import './Navbar.css';
 import Menu from './Menu';
+import {isAuthenticated} from '../Auth'
 
 function useScrollDirection() {
-
   const [scrollDirection, setScrollDirection] = useState(null);
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
-
+    
     const updateScrollDirection = () => {
       const scrollY = window.pageYOffset;
       const direction = scrollY > lastScrollY ? "down" : "up";
@@ -22,12 +22,11 @@ function useScrollDirection() {
       window.removeEventListener("scroll", updateScrollDirection); // clean up
     }
   }, [scrollDirection]);
-
+  
   return scrollDirection;
 };
 
-const Navbar = ({ toogleTheme, setPage }) => {
-
+const Navbar = ({ toggleTheme, setPage }) => {
   const [showMenu, setMenu] = useState(false);
   const toggleMenu = () => {
     setMenu(!showMenu);
@@ -44,12 +43,13 @@ const Navbar = ({ toogleTheme, setPage }) => {
             <button className='nav_btn' onClick={()=>setPage("Movies")}>Movies</button>
             <button className='nav_btn' onClick={()=>setPage("Webseries")}>Webseries</button>
             <button className='nav_btn' onClick={()=>setPage("Anime")}>Anime</button>
+            {isAuthenticated()? <button className='nav_btn' onClick={()=>(localStorage.removeItem('token'), window.location.reload())}>Logout</button> : null}
         </div>
 
         <div className='rightBtn'>
         {/* theme toggle */}
         <label className="switch">
-          <input type="checkbox" onChange={toogleTheme} />
+          <input type="checkbox" onChange={toggleTheme} />
           <span className="slider"></span>
         </label>
         {/* menu toggle */}
