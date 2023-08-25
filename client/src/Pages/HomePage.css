@@ -56,7 +56,7 @@
 .menu-open{
     overflow: hidden;
   }
-  @media (max-width: 800px) {
+  @media (max-width: 450px) {
     .hide-on-mobile {
       display: none;
     }
