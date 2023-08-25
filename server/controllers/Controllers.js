@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 //login, getAll, getMovies, getWebseries, getAnime, getAnimeMovie, getAnimeSeries
 module.exports.login = async (req, res) => {
-    const user = { username: 'T4nm4y' };
+    const user = { username: process.env.JWT_USERNAME };
     const token = jwt.sign(user, process.env.JWT_KEY);
     // Send the token back to the client
     res.json({ token });
