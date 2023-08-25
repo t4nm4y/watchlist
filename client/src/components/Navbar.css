@@ -1,19 +1,23 @@
 .navbar{
-    color: var(--text-color);
+    color: var(--nav-txt-color);
     font-weight: bolder;
     font-size: 1em;
     position: sticky;
     top: 0;
     width: 100%;
-    height: 3em;
+    height: 3.5em;
     display: flex;
     z-index: 9;
-    backdrop-filter: blur( 8px );
-    -webkit-backdrop-filter: blur( 8px );
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 500ms;
-    background-color: rgba(124, 124, 124, 0.16);
+    background-color: var(--nav-bg-color);
+    backdrop-filter: blur( 8px );
+    -webkit-backdrop-filter: blur( 8px );
   }
+  .ButtonsWrap {
+    translate: -2.5em;
+  }
+  
   .navInnerWrap{
     margin: 0 1em 0 1em;
     padding-inline: 1rem;
@@ -42,7 +46,7 @@
   
   .slider {
     --light:  #FFFBFB;
-    --dark: #ff6c9d;
+    --dark: var(--btn-color);
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -78,15 +82,14 @@
 
   
 .nav_btn{
+  font-family: var(--font-family);
   margin: 1em;
   font-size: large;
-  border: #ff3690 0.08em solid;
+  font-weight: 600;
   background: none;
-  color: var(--text-color);
+  color: var(--nav-txt-color);
   width: fit-content;
-  height: 2em;
-  padding: 0 1em 0 1em;
-  border-radius: 16px;
+  height: 1.5em;
   transition-duration: 500ms;
 }
 
@@ -112,7 +115,7 @@
 .bars {
   width: 100%;
   height: 0.15em;
-  background-color: rgb(255, 92, 152);
+  background-color: var(--btn-color);
   border-radius: 4px;
 }
 

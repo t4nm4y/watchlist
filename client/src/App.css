@@ -1,15 +1,24 @@
 
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap");
+
+body{
+  --font-family: Outfit;
+  font-family: var(--font-family);
+  --nav-txt-color: #f1f3f3;
+}
 #light{
-  --bg-color:#f9e8d9;
-  --card-color: #fcae617b;
-  --text-color:#56025e;
-  --btn-color: #790384c6;
+  --nav-bg-color: #003836a9;
+  --bg-color:#edecec;
+  --card-color: #37d3cb42;
+  --text-color:#0b0c10;
+  --btn-color: #0b0c10;
 }
 #dark{
+  --nav-bg-color: #7777773e;
   --bg-color:#1a1a1a;
   --card-color: #86858529;
   --text-color:#FFFBFB;
-  --btn-color: #ff82bef8;
+  --btn-color: #66fcf1;
 }
 
 input{
@@ -24,4 +33,36 @@ button{
   background: none;
   outline: none;
   border: none;
+}
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: var(--btn-color);
+}
+
+.hover-underline-animation::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--btn-color);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+@media screen and (max-width: 600px) {
+  #dark {
+    --bg-color:#002729;
+  }
+  #light{
+  --card-color: #66fcf1;
+  }
 }

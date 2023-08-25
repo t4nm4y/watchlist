@@ -3,6 +3,8 @@
     flex-direction: column;
     background-color: var(--bg-color);
     transition-duration: 500ms;
+    height: fit-content;
+    /* overflow: hidden; */
   }
   .headingWrap{
     display: flex;
@@ -35,7 +37,22 @@
     width: 100%;
     font-size: 1.3em;
   }
-  
+  .cardWrap{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    min-height: calc(100vh - 11em);
+    align-items: center;
+    padding: 1em 0 1em 0;
+    z-index: 2;
+  }
+  .cards_container{
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    /* max-height: 90vh; */
+    align-items: center;
+  }
 .menu-open{
     overflow: hidden;
   }

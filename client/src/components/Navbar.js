@@ -37,13 +37,13 @@ const Navbar = ({ toggleTheme, setPage }) => {
   return (
     <div className={`navbar ${scrollDirection === "down" ? "hide" : ""}`}>
       <div className='navInnerWrap'>
-        <h1> My Watchlist</h1>
+        <h1 style={{fontWeight:50}}> Tk's Watchlist</h1>
         <div className='hide_on_smallScreen ButtonsWrap'>
-            <button className='nav_btn' onClick={()=>setPage("All")}>All</button>
-            <button className='nav_btn' onClick={()=>setPage("Movies")}>Movies</button>
-            <button className='nav_btn' onClick={()=>setPage("Webseries")}>Webseries</button>
-            <button className='nav_btn' onClick={()=>setPage("Anime")}>Anime</button>
-            {isAuthenticated()? <button className='nav_btn' onClick={()=>(localStorage.removeItem('token'), window.location.reload())}>Logout</button> : null}
+            <button className='nav_btn hover-underline-animation' onClick={()=>setPage("All")}>All</button>
+            <button className='nav_btn hover-underline-animation' onClick={()=>setPage("Movies")}>Movies</button>
+            <button className='nav_btn hover-underline-animation' onClick={()=>setPage("Webseries")}>Webseries</button>
+            <button className='nav_btn hover-underline-animation' onClick={()=>setPage("Anime")}>Anime</button>
+            {isAuthenticated()? <button className='nav_btn hover-underline-animation' onClick={()=>(localStorage.removeItem('token'), window.location.reload())}>Logout</button> : null}
         </div>
 
         <div className='rightBtn'>

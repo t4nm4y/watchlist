@@ -6,9 +6,10 @@ import { MdAddCircle, MdSearch, MdClose } from 'react-icons/md';
 import AddCard from '../components/AddCard';
 import './HomePage.css'
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 
-const HomePage = ({theme, toggleTheme}) => {
+const HomePage = ({ theme, toggleTheme }) => {
   const reactNavigator = useNavigate();
   const [editable, setEditable] = useState(false);
   const [searching, setSearching] = useState(false);
@@ -27,10 +28,10 @@ const HomePage = ({theme, toggleTheme}) => {
         }),
       });
       // console.log("the resp of search",response);
-      if(response.ok) {
+      if (response.ok) {
         setList(await response.json());
       }
-      if(response.status===404) {
+      if (response.status === 404) {
         setList([]);
         // alert("No results found");
       }
@@ -67,34 +68,34 @@ const HomePage = ({theme, toggleTheme}) => {
   }, [currPage]);
 
   return (
-    <div className='mainWrap' id={theme}>
+      <div className='mainWrap' id={theme}>
         {editable ? <AddCard fetchList={fetchList} setEditable={setEditable} currPage={currPage} /> : null}
         <Navbar toggleTheme={toggleTheme} setPage={setPage} />
         <div className="hide-on-mobile">
           <Blob />
         </div>
-        <div className='cardWrap'>
+        < div className='cardWrap'>
           <div className='headingWrap'>
-              {searching ? (
-                <div className='SearchWrap'>
-                  <input className='search_input' type="text" placeholder='SEARCH'
-                    onInput={(e) => searchList(e.target.value)}
-                    // onKeyUp={(e) => searchList(e.target.value)}
-                    required autoFocus />
-                  <button onClick={() => {
-                    setSearching(false);
-                    fetchList();
-                  }}>
-                    <MdClose className="card_btn" />
-                  </button>
-                </div>
-              ) :<>
-              <h2 className='heading'>{currPage}</h2>
-                <button onClick={() => setSearching(true)}>
-                  <MdSearch className="card_btn" />
+            {searching ? (
+              <div className='SearchWrap'>
+                <input className='search_input' type="text" placeholder='SEARCH'
+                  onInput={(e) => searchList(e.target.value)}
+                  // onKeyUp={(e) => searchList(e.target.value)}
+                  required autoFocus />
+                <button onClick={() => {
+                  setSearching(false);
+                  fetchList();
+                }}>
+                  <MdClose className="card_btn" />
                 </button>
-              </>
-                }
+              </div>
+            ) : <>
+              <h2 className='heading'>{currPage}</h2>
+              <button onClick={() => setSearching(true)}>
+                <MdSearch className="card_btn" />
+              </button>
+            </>
+            }
 
             {/* </div> */}
             <button onClick={() => setEditable(true)}>
@@ -104,24 +105,28 @@ const HomePage = ({theme, toggleTheme}) => {
           {movieList.map((movie, index) => (
             <Card index={index + 1} key={movie._id} currPage={currPage} _id={movie._id} title={movie.title} watchedDate={movie.watchedDate} category={movie.category} fetchList={fetchList} />
           ))}
-
           {/* dummy data */}
-          {/* <Card title="1. aot" category="M"/>
-          <Card title="2. batman dark knight rises batman" category="AM"/>
-          <Card title="aot" category="M"/>
-          <Card title="1. batman"/>
-          <Card title="1. aot"/>
-          <Card title="aot"/>
-          <Card title="aot"/>
-          <Card title="aot"/>
-          <Card title="1. aot"/>
-          <Card title="aot"/>
-          <Card title="aot"/>
-          <Card title="aot"/> */}
+           {/* <Card title="1. aot" category="M" />
+          <Card title="2. batman dark knight rises batman" category="AM" />
+          <Card title="aot" category="M" />
+          <Card title="1. batman" />
+          <Card title="1. aot" />
+          <Card title="aot" />
+          <Card title="aot" category="M" />
+          <Card title="1. batman" />
+          <Card title="1. aot" />
+          <Card title="aot" />
+          <Card title="aot" category="M" />
+          <Card title="1. batman" />
+          <Card title="1. aot" />
+          <Card title="aot" />
+          <Card title="aot" category="M" />
+          <Card title="1. batman" />
+          <Card title="1. aot" />
+          <Card title="aot" /> */}
 
-          <br />
-          <br />
         </div>
+          <Footer />
       </div>
   )
 }

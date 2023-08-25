@@ -1,7 +1,7 @@
 .MenuWrap{
     width: 100vw;
     height: 100vh;
-    background-color: rgb(38, 2, 59);
+    background-color:var(--bg-color);
     position: fixed;
     top:0;
     left:0;
@@ -16,14 +16,17 @@
     justify-content: center;
 }
 .menuBtn{
+    font-family: var(--font-family);
     scale: 1.5;
     margin: 2em;
     font-size: large;
-    border: #ff3690 0.08em solid;
+    border: var(--btn-color) 1px solid;
     background: none;
     color: rgb(255, 255, 255);
     width: fit-content;
     height: 2em;
     padding: 0 1em 0 1em;
-    border-radius: 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: var(--text-color);
   }
