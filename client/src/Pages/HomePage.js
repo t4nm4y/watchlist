@@ -5,20 +5,18 @@ import Navbar from '../components/Navbar';
 import { MdAddCircle, MdSearch, MdClose } from 'react-icons/md';
 import AddCard from '../components/AddCard';
 import './HomePage.css'
-import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 
 
 const HomePage = ({ theme, toggleTheme }) => {
-  const reactNavigator = useNavigate();
   const [editable, setEditable] = useState(false);
   const [searching, setSearching] = useState(false);
   const [movieList, setList] = useState([]);
   const [currPage, setPage] = useState("All");
-
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const searchList = async function (searchTerm) {
     try {
-      const response = await fetch('/search', {
+      const response = await fetch(`${BACKEND_URL}/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,19 +41,19 @@ const HomePage = ({ theme, toggleTheme }) => {
   const fetchList = async function () {
     try {
       if (currPage === "All") {
-        const response = await fetch('/all');
+        const response = await fetch(`${BACKEND_URL}/all`);
         setList(await response.json());
       }
       else if (currPage === "Movies") {
-        const response = await fetch('/movies');
+        const response = await fetch(`${BACKEND_URL}/movies`);
         setList(await response.json());
       }
       else if (currPage === "Webseries") {
-        const response = await fetch('/webseries');
+        const response = await fetch(`${BACKEND_URL}/webseries`);
         setList(await response.json());
       }
       else if (currPage === "Anime") {
-        const response = await fetch('/anime');
+        const response = await fetch(`${BACKEND_URL}/anime`);
         setList(await response.json());
       }
     }

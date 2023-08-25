@@ -8,9 +8,10 @@ function Login({ theme }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const handleLogin = async () => {
     try {
-      const response = await fetch('/login', {
+      const response = await fetch(`${BACKEND_URL}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

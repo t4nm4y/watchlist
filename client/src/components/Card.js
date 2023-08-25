@@ -4,7 +4,7 @@ import { MdDelete } from "react-icons/md";
 import AddCard from './AddCard';
 import './Card.css';
 import { useNavigate } from 'react-router-dom';
-
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const Card = (props) => {
   const[editable, setEditable] = useState(false);
   
@@ -21,7 +21,7 @@ const Card = (props) => {
         Navigate('/login');
         return;
       }
-      await fetch('/delete', {
+      await fetch(`${BACKEND_URL}/delete`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

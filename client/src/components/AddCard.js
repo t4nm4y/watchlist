@@ -14,6 +14,7 @@ const AddCard = (props) => {
     const [category, setCategory] = useState(props.category || (props.currPage==="Movies" ? "M" : props.currPage==="Webseries" ? "S" : props.currPage==="Anime" ? "A" : "Category"));
     const originalTitle = props.title;
     const cardRef = useRef(null);
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
     const handleEdit = async () => {
         if (!title) return;
         if(!isAuthenticated()) {
@@ -28,7 +29,7 @@ const AddCard = (props) => {
             // props.setEditable(false);  //remove this later
             if (!props._id) {
                 console.log("adding");
-                const response = await fetch('/add', {
+                const response = await fetch(`${BACKEND_URL}/add`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -46,7 +47,7 @@ const AddCard = (props) => {
             }
             else {
                 console.log("updating");
-                const response = await fetch('/update', {
+                const response = await fetch(`${BACKEND_URL}/update`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
