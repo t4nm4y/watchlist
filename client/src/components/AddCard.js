@@ -2,13 +2,11 @@ import { React, useState, useRef } from 'react'
 import './AddCard.css'
 import { MdCheckCircle } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import {isAuthenticated} from '../Auth'
+
 
 const AddCard = (props) => {
     const Navigate=useNavigate();
-  function isAuthenticated() {
-    const token = localStorage.getItem('token');
-    return !!token; // Returns true if a token is present
-  }
     const token = localStorage.getItem('token');
     const [title, setTitle] = useState(props.title);
     const [category, setCategory] = useState(props.category || (props.currPage==="Movies" ? "M" : props.currPage==="Webseries" ? "S" : props.currPage==="Anime" ? "A" : "Category"));

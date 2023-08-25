@@ -4,15 +4,13 @@ import { MdDelete } from "react-icons/md";
 import AddCard from './AddCard';
 import './Card.css';
 import { useNavigate } from 'react-router-dom';
+import {isAuthenticated} from '../Auth'
+
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const Card = (props) => {
   const[editable, setEditable] = useState(false);
   
   const Navigate=useNavigate();
-  function isAuthenticated() {
-    const token = localStorage.getItem('token');
-    return !!token; // Returns true if a token is present
-  }
   const token = localStorage.getItem('token');
   const handleDelete = async () => {
     console.log("deleting");
