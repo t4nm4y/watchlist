@@ -54,7 +54,7 @@ const Navbar = ({ toggleTheme, setPage }) => {
         </label>
         {/* menu toggle */}
         <input id="checkbox" type="checkbox" onChange={toggleMenu}/>
-            {showMenu && <Menu setPage={setPage} setMenu={setMenu}/>}
+            {showMenu && <Menu setPage={setPage} toggleMenu={toggleMenu}/>}
         <label className={`hide_on_bigScreen toggle ${showMenu? "checked" : ""}`} for="checkbox">
               <div id="bar1" className="bars"></div>
               <div id="bar2" className="bars"></div>
