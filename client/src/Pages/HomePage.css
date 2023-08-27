@@ -4,7 +4,7 @@
     background-color: var(--bg-color);
     transition-duration: 500ms;
     height: fit-content;
-    /* overflow: hidden; */
+    width: 100vw;
   }
   .headingWrap{
     display: flex;
@@ -50,7 +50,6 @@
     display: flex;
     flex-direction: column;
     flex:1;
-    /* max-height: 90vh; */
     align-items: center;
   }
 .menu-open{

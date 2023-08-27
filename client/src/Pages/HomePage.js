@@ -25,7 +25,6 @@ const HomePage = ({ theme, toggleTheme }) => {
           searchTerm: searchTerm,
         }),
       });
-      // console.log("the resp of search",response);
       if (response.ok) {
         setList(await response.json());
       }
@@ -122,7 +121,7 @@ const HomePage = ({ theme, toggleTheme }) => {
           <Card title="1. batman" />
           <Card title="1. aot" />
           <Card title="aot" /> */}
-
+          
         </div>
           <Footer />
       </div>

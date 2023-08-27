@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './Blob.css';
 import { useSpring, animated } from 'react-spring';
 
+function isMobile() {
+  return navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone|iPad|iPod/i);
+}
 const Blob = () => {
   const [mousePosition, setMousePosition] = useState({
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
   });
-  const [maxTop, setMaxTop] = useState(window.innerHeight / 2);
+  const [maxTop, setMaxTop] = useState(window.innerHeight);
   
   const handleMouseMove = (event) => {
     const cardwrap = document.querySelector('.cardWrap');
@@ -32,8 +35,9 @@ const Blob = () => {
     }));
   };
   useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('scroll', handleScroll);
+    if(isMobile()) {return;}
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
@@ -46,7 +50,6 @@ const Blob = () => {
     top: `${Math.min(mousePosition.y + window.scrollY, parseFloat(maxTop)-250)}px`,
     config: { duration: 300 },
   });
-
   return (
     <>
       <div className='blur-overlay'></div>

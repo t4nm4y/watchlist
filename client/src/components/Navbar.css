@@ -19,8 +19,7 @@
   }
   
   .navInnerWrap{
-    margin: 0 1em 0 1em;
-    padding-inline: 1rem;
+    padding-inline: 2em;
     display: flex;
     height: 100%;
     width: 100%;
@@ -28,9 +27,8 @@
     justify-content: space-between;
   }
   .rightBtn{
-    justify-content: space-evenly;
+    justify-content: space-between;
     display: flex;
-    width: 7em;
     align-items: center;
   }
   .hide{
@@ -161,5 +159,16 @@
   }
   .hide_on_smallScreen {
     display: none;
+  }
+  .rightBtn{
+    width: 6.3em;
+  }
+}
+@media (max-width: 500px) {
+  .navInnerWrap{
+    padding-inline: 1em;
+  }
+  .rightBtn{
+    width: 6.3em;
   }
 }
