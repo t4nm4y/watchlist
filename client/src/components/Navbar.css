@@ -117,11 +117,6 @@
   border-radius: 4px;
 }
 
-#bar2 {
-  transition-duration: .8s;
-}
-
-
 .checked .bars {
   position: absolute;
   transition-duration: .5s;
@@ -170,5 +165,22 @@
   }
   .rightBtn{
     width: 6.3em;
+  }
+}
+
+
+.page_down_arrow{
+  size: 32;
+  position: fixed;
+  z-index: 20;
+  bottom: 2em;
+  right: 2em;
+  color: var(--btn-color);
+  opacity: 60%;
+}
+@media (max-width: 500px) {
+  .page_down_arrow{
+    bottom: 1em;
+    left: 0.5em;
   }
 }

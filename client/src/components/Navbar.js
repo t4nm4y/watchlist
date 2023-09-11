@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import './Navbar.css';
 import Menu from './Menu';
 import {isAuthenticated} from '../Auth'
+import { BsFillArrowDownCircleFill } from "react-icons/bs";
 
 function useScrollDirection() {
   const [scrollDirection, setScrollDirection] = useState(null);
@@ -35,6 +36,7 @@ const Navbar = ({ toggleTheme, setPage }) => {
 
   const scrollDirection = useScrollDirection();
   return (
+    <>
     <div className={`navbar ${scrollDirection === "down" ? "hide" : ""}`}>
       <div className='navInnerWrap'>
         <h1 style={{fontWeight:50}}> Tk's Watchlist</h1>
@@ -54,7 +56,7 @@ const Navbar = ({ toggleTheme, setPage }) => {
         </label>
         {/* menu toggle */}
         <input id="checkbox" type="checkbox" onChange={toggleMenu}/>
-            {showMenu && <Menu setPage={setPage} toggleMenu={toggleMenu}/>}
+        {showMenu && <Menu setPage={setPage} toggleMenu={toggleMenu}/>}
         <label className={`hide_on_bigScreen toggle ${showMenu? "checked" : ""}`} for="checkbox">
               <div id="bar1" className="bars"></div>
               <div id="bar2" className="bars"></div>
@@ -63,6 +65,8 @@ const Navbar = ({ toggleTheme, setPage }) => {
         </div>
       </div>
     </div>
+      {!showMenu && <BsFillArrowDownCircleFill size={36} className='page_down_arrow' onClick={()=>window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})}/>}
+    </>
   )
 }
 
