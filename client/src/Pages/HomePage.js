@@ -6,9 +6,11 @@ import { MdAddCircle, MdSearch, MdClose } from 'react-icons/md';
 import AddCard from '../components/AddCard';
 import './HomePage.css'
 import Footer from '../components/Footer';
+import { PulseLoader } from 'react-spinners'
 
 
 const HomePage = ({ theme, toggleTheme }) => {
+  const [loadingList, setLoadingList] = useState(false);
   const [editable, setEditable] = useState(false);
   const [searching, setSearching] = useState(false);
   const [movieList, setList] = useState([]);
@@ -39,6 +41,7 @@ const HomePage = ({ theme, toggleTheme }) => {
   }
   const fetchList = async function () {
     try {
+    setLoadingList(true);
       if (currPage === "All") {
         const response = await fetch(`${BACKEND_URL}/all`);
         setList(await response.json());
@@ -55,6 +58,7 @@ const HomePage = ({ theme, toggleTheme }) => {
         const response = await fetch(`${BACKEND_URL}/anime`);
         setList(await response.json());
       }
+    setLoadingList(false);
     }
     catch (err) {
       console.log(err);
@@ -65,45 +69,53 @@ const HomePage = ({ theme, toggleTheme }) => {
   }, [currPage]);
 
   return (
-      <div className='mainWrap' id={theme}>
-        {editable ? <AddCard fetchList={fetchList} setEditable={setEditable} currPage={currPage} /> : null}
-        <Navbar toggleTheme={toggleTheme} setPage={setPage} />
-        <div className="hide-on-mobile">
-          <Blob />
-        </div>
-        < div className='cardWrap'>
-          <div className='headingWrap'>
-            {searching ? (
-              <div className='SearchWrap'>
-                <input className='search_input' type="text" placeholder='SEARCH'
-                  onInput={(e) => searchList(e.target.value)}
-                  // onKeyUp={(e) => searchList(e.target.value)}
-                  required autoFocus />
-                <button onClick={() => {
-                  setSearching(false);
-                  fetchList();
-                }}>
-                  <MdClose className="card_btn" />
-                </button>
-              </div>
-            ) : <>
-              <h2 className='heading'>{currPage}</h2>
-              <button onClick={() => setSearching(true)}>
-                <MdSearch className="card_btn" />
+    <div className='mainWrap' id={theme}>
+      {editable ? <AddCard fetchList={fetchList} setEditable={setEditable} currPage={currPage} /> : null}
+      <Navbar toggleTheme={toggleTheme} setPage={setPage} />
+      <div className="hide-on-mobile">
+        <Blob />
+      </div>
+      < div className='cardWrap'>
+        <div className='headingWrap'>
+          {searching ? (
+            <div className='SearchWrap'>
+              <input className='search_input' type="text" placeholder='SEARCH'
+                onInput={(e) => searchList(e.target.value)}
+                // onKeyUp={(e) => searchList(e.target.value)}
+                required autoFocus />
+              <button onClick={() => {
+                setSearching(false);
+                fetchList();
+              }}>
+                <MdClose className="card_btn" />
               </button>
-            </>
-            }
-
-            {/* </div> */}
-            <button onClick={() => setEditable(true)}>
-              <MdAddCircle className="card_btn" />
+            </div>
+          ) : <>
+            <h2 className='heading'>{currPage}</h2>
+            <button onClick={() => setSearching(true)}>
+              <MdSearch className="card_btn" />
             </button>
-          </div>
-          {movieList.map((movie, index) => (
-            <Card index={index + 1} key={movie._id} currPage={currPage} _id={movie._id} title={movie.title} watchedDate={movie.watchedDate} category={movie.category} fetchList={fetchList} />
-          ))}
-          {/* dummy data */}
-           {/* <Card title="1. aot" category="M" />
+          </>
+          }
+
+          {/* </div> */}
+          <button onClick={() => setEditable(true)}>
+            <MdAddCircle className="card_btn" />
+          </button>
+        </div>
+
+        <PulseLoader
+          loading={loadingList}
+          color={"#ACBBBF"}
+          style={{ margin: '1em' }}
+          size={9}
+        />
+
+        {movieList.map((movie, index) => (
+          <Card index={index + 1} key={movie._id} currPage={currPage} _id={movie._id} title={movie.title} watchedDate={movie.watchedDate} category={movie.category} fetchList={fetchList} />
+        ))}
+        {/* dummy data */}
+        {/* <Card title="1. aot" category="M" />
           <Card title="2. batman dark knight rises batman" category="AM" />
           <Card title="aot" category="M" />
           <Card title="1. batman" />
@@ -121,10 +133,10 @@ const HomePage = ({ theme, toggleTheme }) => {
           <Card title="1. batman" />
           <Card title="1. aot" />
           <Card title="aot" /> */}
-          
-        </div>
-          <Footer />
+
       </div>
+      <Footer />
+    </div>
   )
 }
 
