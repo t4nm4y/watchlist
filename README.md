@@ -3,7 +3,6 @@
 - I can perform all the CRUD operations. It has both Light and Dark mode. 
 - I have created it using the Model-View-Controller (MVC) structure.
 - I have created my own Authentication. It also uses JWT.
-- It is hosted here: https://tkswatchlist.onrender.com/
 
 ## Tech Stack used:
 MongoDB, Node, Express, React (MERN Stack), Java-Script, HTML, CSS
